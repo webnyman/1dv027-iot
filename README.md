@@ -15,11 +15,11 @@ The requirements for the assignment are quite straightforward. But, they can be 
 
 ### Must
 
-* The Raspberry Pi Pico W microcontroller is connected to WiFi.
+* The Raspberry Pi Pico W microcontroller is connected to WiFi or LoRaWAN gateway.
 * The Raspberry Pi Pico W microcontroller reads the temperature and humidity data of sensor DHT11.
 * The Raspberry Pi Pico W microcontroller sends the temperature and humidity data to the Adafruit MQTT Broker using the MQTT protocol. The data need to be prepared in a JSON format.
-* The Raspberry Pi Pico W microcontroller must be controlled by a button on the Adafruit dashboard i.e. if Rpi Pico W receives the command "ON" or "OFF" on the "LED" topic, the built-in LED of Rpi Pico W must be on or off.
-* Written report (PDF file) and prerecorded presentation (MP4 file). The assignment files (PDF and MP4) must follow the format:  "yourlnucode_1DV027_IoT.pdf", "yourlnucode_1DV027_IoT.mp4"
+* The Raspberry Pi Pico W microcontroller must be controlled by a button on the Adafruit dashboard (or Datacake if you use LoRaWAN) i.e. if Rpi Pico W receives the command "ON" or "OFF" on the "LED" topic, the built-in LED of Rpi Pico W must be on or off.
+* Your git repository should include the assignment report, assignment code, and link to your prerecorded presentation file where you show your hardware (picow+wires+sensor) connection, visualization of data in your dashboard, and turn on/off the PicoW LED (MP4 file).
 
 ## Assignment Report
 
