@@ -54,4 +54,4 @@ dkms.conf
 # Pi Pico
 */build/*
 */.vscode/*
-config.py
+*/config.py
