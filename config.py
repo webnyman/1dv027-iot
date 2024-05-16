@@ -1,5 +1,5 @@
-WIFI_SSID = '------'
-WIFI_PASSWORD = '-----'
+WIFI_SSID = '110'
+WIFI_PASSWORD = 'monette61x'
 ADAFRUIT_IO_USERNAME = '----'
 ADAFRUIT_IO_KEY = '----'
 ADAFRUIT_IO_FEEDNAME = '---'
