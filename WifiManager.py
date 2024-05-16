@@ -1,16 +1,19 @@
+# wifi_manager.py
 import network
 import time
-import config
 from machine import Pin
 
 class WifiManager:
-    def __init__(self, led_pin=15):
+    def __init__(self, ssid, password, led_pin=11):
+        self.ssid = ssid
+        self.password = password
         self.wlan = network.WLAN(network.STA_IF)
         self.wlan.active(True)
         self.led = Pin(led_pin, Pin.OUT)
+        self.led.value(0)  # Ensure LED is off initially
 
     def connect(self):
-        self.wlan.connect(config.WIFI_SSID, config.WIFI_PASSWORD)
+        self.wlan.connect(self.ssid, self.password)
         print(self.wlan.isconnected())
 
         wait = 10
@@ -37,20 +40,3 @@ class WifiManager:
         time.sleep(0.5)
         self.led.value(0)  # LED OFF
         time.sleep(0.5)
-
-# Example usage
-def main():
-    wifi_manager = WifiManager()
-    try:
-        wifi_manager.connect()
-        # WiFi connected, keep the LED on
-        wifi_manager.led.value(1)
-    except RuntimeError as e:
-        print(e)
-        # WiFi not connected, blink the LED
-        while True:
-            wifi_manager.blink_led()
-
-# Run main function
-if __name__ == "__main__":
-    main()
