@@ -42,6 +42,7 @@ def main():
         humidity_feed = "{}/feeds/humidity".format(config.AIO_USERNAME)
         global led
         led = Pin("LED", Pin.OUT)  # Initialize the built-in LED pin
+        green_led = Pin(12, Pin.OUT)  # Initialize the green LED pin
 
         while True:
             sensor_data = sensor.read()
@@ -57,6 +58,7 @@ def main():
                 mqtt_client.publish(humidity_feed, str(humidity))
             else:
                 print("Failed to read from the sensor")
+            green_led.value(1)
 
             mqtt_client.check_msg()
 
