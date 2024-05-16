@@ -38,19 +38,23 @@ def main():
         wifi_manager.connect()
         wifi_manager.led.value(1)
 
-        sensor_topic = "{}/feeds/temperature".format(config.AIO_USERNAME)
-
+        temp_feed = "{}/feeds/temperature".format(config.AIO_USERNAME)
+        humidity_feed = "{}/feeds/humidity".format(config.AIO_USERNAME)
         global led
         led = Pin("LED", Pin.OUT)  # Initialize the built-in LED pin
 
         while True:
             sensor_data = sensor.read()
             if sensor_data:
-                # Convert the dictionary to a JSON string and then to bytes
-                sensor_data_json = ujson.dumps(sensor_data)
-                sensor_data_bytes = sensor_data_json.encode("utf-8")
-                print("Publishing to MQTT: {}".format(sensor_data_json))
-                mqtt_client.publish(sensor_topic, sensor_data_bytes)
+                temperature = sensor_data["temperature"]
+                humidity = sensor_data["humidity"]
+
+                # Publish temperature and humidity to their respective feeds
+                print(f'Publishing temperature: {temperature}')
+                mqtt_client.publish(temp_feed, str(temperature))
+                
+                print(f'Publishing humidity: {humidity}')
+                mqtt_client.publish(humidity_feed, str(humidity))
             else:
                 print("Failed to read from the sensor")
 
