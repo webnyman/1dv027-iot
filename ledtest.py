@@ -2,7 +2,7 @@ from machine import Pin
 import time
 
 # Configure the GPIO pin (GP15 in this example) for the LED
-led = Pin(11, Pin.OUT)
+led = Pin(14, Pin.OUT)
 
 def test_led():
     print("Turning LED on")

@@ -1,34 +1,68 @@
-# main.py
-import config  # Ensure you have a config.py file with WIFI_SSID and WIFI_PASSWORD
+import config
 from WifiManager import WifiManager
 from Sensor import Sensor
+from MQTTManager import MQTTClientWrapper
 import time
+import ujson
+from machine import Pin
+
+
+# Callback function to handle messages
+def mqtt_callback(topic, msg):
+    message = msg.decode("utf-8")
+    print("Received message: {} on topic: {}".format(message, topic))
+    if message == "ON":
+        led.value(1)
+    elif message == "OFF":
+        led.value(0)
+
 
 def main():
     wifi_manager = WifiManager(config.WIFI_SSID, config.WIFI_PASSWORD)
     sensor = Sensor()
-    
+
+    topic = "{}/feeds/led-control".format(config.AIO_USERNAME)
+
+    mqtt_client = MQTTClientWrapper(
+        client_id="pico",
+        server="io.adafruit.com",
+        port=1883,
+        user=config.AIO_USERNAME,
+        password=config.AIO_KEY
+    )
+
+    mqtt_client.set_callback(mqtt_callback)
+    mqtt_client.subscribe(topic)
+
     try:
         wifi_manager.connect()
-        # WiFi connected, keep the WiFi LED on
         wifi_manager.led.value(1)
-        
-        # Read sensor data in a loop
+
+        sensor_topic = "{}/feeds/temperature".format(config.AIO_USERNAME)
+
+        global led
+        led = Pin("LED", Pin.OUT)  # Initialize the built-in LED pin
+
         while True:
-            temp, hum = sensor.read()
-            if temp is not None and hum is not None:
-                print('Temperature: {:.1f} C'.format(temp))
-                print('Humidity: {:.1f} %'.format(hum))
+            sensor_data = sensor.read()
+            if sensor_data:
+                # Convert the dictionary to a JSON string and then to bytes
+                sensor_data_json = ujson.dumps(sensor_data)
+                sensor_data_bytes = sensor_data_json.encode("utf-8")
+                print("Publishing to MQTT: {}".format(sensor_data_json))
+                mqtt_client.publish(sensor_topic, sensor_data_bytes)
             else:
-                print('Failed to read from the sensor')
-            time.sleep(2)  # Wait for 2 seconds before reading again
+                print("Failed to read from the sensor")
+
+            mqtt_client.check_msg()
+
+            time.sleep(5)
 
     except RuntimeError as e:
         print(e)
-        # WiFi not connected, WiFi LED remains off
         while True:
             wifi_manager.blink_led()
 
-# Run main function
+
 if __name__ == "__main__":
     main()
