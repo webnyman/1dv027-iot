@@ -1,7 +1,5 @@
 # sensor.py
-import time
 import dht
-import ujson
 from machine import Pin
 
 class Sensor:

@@ -3,14 +3,12 @@ from WifiManager import WifiManager
 from Sensor import Sensor
 from MQTTManager import MQTTClientWrapper
 import time
-import ujson
 import gc
 from machine import Pin
 
 # Callback function to handle messages
 def mqtt_callback(topic, msg):
     message = msg.decode("utf-8")
-    print("Received message: {} on topic: {}".format(message, topic))
     if message == "ON":
         led.value(1)
     elif message == "OFF":
