@@ -473,8 +473,6 @@ Adafruit provides a maximum of 30 data points åper minute so I set my Pico to s
 
 ### Finalizing the design
 
-Show the final results of your project. Give your final thoughts on how you think the project went. What could have been done in another way, or even better? Some pictures are nice!
+[Video of the IoT project](https://youtu.be/p6PjTyzycEQ)
 
-- [ ] Show the final results of the project
-- [ ] Pictures
-- [ ] Video presentation of the project
+
