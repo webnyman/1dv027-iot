@@ -98,13 +98,38 @@ This circuit involves connecting a Raspberry Pi Pico W, two LEDs, resistors, and
 - Voltage and Current: Ensure the Pico is connected to a 3.3V power source. The DHT22 sensor also operates on 3.3V, making it compatible with the Pico's output.
 
 ### Platform
+#### Adafruit IO Platform
+Summary of the Adafruit IO Platform (Free Version)
+Adafruit IO is a cloud service designed to simplify data logging, monitoring, and control for IoT (Internet of Things) projects. It provides an easy-to-use platform for storing, visualizing, and interacting with your project data. Here's a concise overview of the Adafruit IO platform, focusing on the free version.
 
-Describe your choice of platform. If you have tried different platforms, it can be good to provide a comparison.
+#### Key Features
+1. Data Storage:
 
-Is your platform based on a local installation or a cloud? Do you plan to use a paid subscription or a free one? Describe the alternatives going forward if you want to scale your idea.
+- Allows users to store sensor data and other types of data in "feeds".
+- Each feed can be thought of as a separate data stream.
 
-- [ ] Describe platform in terms of functionality
-- [ ] *Explain and elaborate on what made you choose this platform
+2. Data Visualization:
+
+- Provides various widgets for visualizing data, including line charts, gauges, maps, and more.
+- Dashboards can be created to monitor multiple data feeds in a single view.
+
+3. Data Retention:
+
+- For free accounts, data is retained for 30 days. Data older than 30 days is deleted from the servers.
+
+4. User Interface:
+
+- Web-based interface for easy access and management of your data and devices.
+- Mobile-friendly design for accessing data on the go.
+
+5. MQTT and REST API:
+
+- Supports both MQTT and REST API for data communication.
+- MQTT is suitable for real-time data streaming, while REST API is good for traditional web requests.
+
+Adafruit IO's free version is an excellent platform for small-scale IoT projects, offering essential features for data storage, visualization, and control. It is particularly suitable for beginners, hobbyists, and educators looking to explore the world of IoT without incurring costs. With its user-friendly interface and robust API support, Adafruit IO provides a strong foundation for developing and managing IoT applications.
+
+If I choose to build a more permanent IoT I might consider a paid subsciption, but for this project the free version is more than enough.
 
 ### The code
 
@@ -166,7 +191,6 @@ The Sensor class reads temperature and humidity data from the DHT22 sensor. This
 Code Snippet:
 
 ```python
-Kopiera kod
 import dht
 from machine import Pin
 
