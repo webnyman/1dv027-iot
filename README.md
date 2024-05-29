@@ -38,7 +38,7 @@ IoT Integration: Demonstrates how to integrate sensors and actuators with an IoT
 | USB-cable | Connects w. the computer and the power source. |
 | Temp/Humidity Sensor DHT22 (RHT03) | A sensor that measures temp and humidity |
 
-I bought all the components from Electro:kit and hte cost was 464 SEK.
+I bought all the components from Electro:kit and the cost was 464 SEK.
 
 ![My Pico](./pico.jpg)
 
@@ -469,10 +469,9 @@ I am using the built-in dashboard in Adafruit. The dashboard is built by creatin
 
 Adafruit IO provides data retention policies based on the type of account you have. For free accounts, the data retention period is generally limited. As of the last update, the free Adafruit IO accounts typically retain data for 30 days. This means that any data older than 30 days will be deleted from their servers.
 
-Adafruit provides a maximum of 30 data points åper minute so I set my Pico to send data every 5 seconds which also permits a number of "clicks" on the on/off-button per minute.
+Adafruit provides a maximum of 30 data points per minute so I set my Pico to send data every 5 seconds which also permits a number of "clicks" on the on/off-button per minute.
 
 ### Finalizing the design
 
 [Video of the IoT project](https://youtu.be/p6PjTyzycEQ)
-
 
