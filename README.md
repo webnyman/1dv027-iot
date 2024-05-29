@@ -36,7 +36,7 @@ IoT Integration: Demonstrates how to integrate sensors and actuators with an IoT
 | 2 330 Ohm Resistors | Used for the LED´s. |
 | Male to Male Jumper Wires | Connects the components with the Pico. |
 | USB-cable | Connects w. the computer and the power source. |
-| Temp/Humidity Sensor RHT03 | A Sensor that measures temp and humidity |
+| Temp/Humidity Sensor DHT22 (RHT03) | A sensor that measures temp and humidity |
 
 I bought all the components from Electro:kit and hte cost was 464 SEK.
 
@@ -56,12 +56,46 @@ I bought all the components from Electro:kit and hte cost was 464 SEK.
 9. Through the MicroPico Device controller I could now see both my local repo and the device folder. I could now easily transfer files between the project and the device.
 10. You code in your IDE and then you could either run them directly from your ide or transfer the files to your device and run them from there.
 
-### TODO: Putting everything together
+### Putting everything together
 
-How is all the electronics connected? Describe all the wiring. Good if you can show a circuit diagram. Be specific on how to connect everything and what to think of in terms of resistors, current, and voltage. Is this only for a development setup, or could it be used in production?
+#### Circuit diagram
+![Circuit Diagram](./circuit_diagram.png)
+Circuit Diagram Description and Connection Instructions
+This circuit involves connecting a Raspberry Pi Pico W, two LEDs, resistors, and a DHT22 temperature/humidity sensor on a breadboard. Here’s a detailed description and step-by-step guide for the connections:
 
-- [ ] Circuit diagram (can be hand drawn)
-- [ ] *Electrical calculations
+##### Components:
+1. Raspberry Pi Pico W: This is the microcontroller that controls the LEDs and reads data from the sensor.
+2. Green LED: Indicates sensor activity.
+3. Yellow LED: Indicates Wi-Fi connection status.
+4. 330 Ohm Resistors: Used to limit the current through the LEDs to prevent them from burning out.
+5. Male to Male Jumper Wires: Used for making connections between components and the Pico.
+6. USB Cable: Connects the Pico to the computer for power and programming.
+7. DHT22 (RHT03) Sensor: Measures temperature and humidity.
+
+##### Connections:
+1. Power Rails:
+
+- Connect the 3.3V pin (Pin 36) on the Raspberry Pi Pico W to the positive power rail (red) on the breadboard.
+- Connect the GND pin (Pin 38) on the Raspberry Pi Pico W to the ground rail (blue) on the breadboard.
+2. DHT22 Sensor:
+
+- Pin 1 (VCC): Connect to the positive power rail (3.3V).
+- Pin 2 (Data): Connect to GP15 (Pin 20) on the Pico.
+- Pin 4 (GND): Connect to the ground rail.
+
+3. Green LED (Sensor Activity):
+
+- Anode (Longer Leg): Connect to GP16 (Pin 21) on the Pico through a 330 Ohm resistor.
+- Cathode (Shorter Leg): Connect to the ground rail.
+
+4. Yellow LED (Wi-Fi Connection):
+
+- Anode (Longer Leg): Connect to GP17 (Pin 22) on the Pico through a 330 Ohm resistor.
+- Cathode (Shorter Leg): Connect to the ground rail
+
+#### Considerations
+- Resistors: The 330 Ohm resistors are essential to limit the current through the LEDs. Without them, the LEDs could burn out due to excessive current.
+- Voltage and Current: Ensure the Pico is connected to a 3.3V power source. The DHT22 sensor also operates on 3.3V, making it compatible with the Pico's output.
 
 ### Platform
 
